@@ -46,7 +46,7 @@ class APIService {
                     it[author] = Book.author
                     it[translator] = Book.translator!!
                     it[publisher] = Book.publisher!!
-                    it[category] = Book.category
+                    it[category] = Book.category!!
                     it[photo] = Book.photo
                     it[descr] = Book.descr
                     it[rate] = Book.rate
@@ -68,7 +68,7 @@ class APIService {
                 it[author] = Book.author
                 it[translator] = Book.translator!!
                 it[publisher] = Book.publisher!!
-                it[category] = Book.category
+                it[category] = Book.category!!
                 it[photo] = Book.photo
                 it[descr] = Book.descr
                 it[rate] = Book.rate

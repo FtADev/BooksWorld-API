@@ -22,7 +22,7 @@ data class Book(
         val author: String,
         val translator: String?,
         val publisher: String?,
-        val category: String,
+        val category: String?,
         val photo: String,
         val descr: String,
         val rate: Double,
