@@ -7,9 +7,12 @@ import io.ktor.response.respond
 import io.ktor.routing.*
 
 fun Route.widget(apiService: APIService) {
-    route("/Book") {
+    route("/book") {
         get("/") {
             call.respond(apiService.getAllBooks())
+        }
+        get("/image") {
+            call.respond(apiService.getAllImage())
         }
         get("/{id}") {
             val widget = apiService.getWidget(call.parameters["id"]?.toInt()!!)

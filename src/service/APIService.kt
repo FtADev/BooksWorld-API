@@ -1,6 +1,7 @@
 package com.ftadev.service
 
 import com.ftadev.model.Book
+import com.ftadev.model.BookImage
 import com.ftadev.model.BookTable
 import com.ftadev.service.DatabaseFactory.dbQuery
 import model.ChangeType
@@ -19,6 +20,10 @@ class APIService {
 
     suspend fun getAllBooks(): List<Book> = dbQuery {
         BookTable.selectAll().map { toBook(it) }
+    }
+
+    suspend fun getAllImage(): List<BookImage> = dbQuery {
+        BookTable.selectAll().map { toBookImage(it) }
     }
 
     suspend fun getWidget(id: Int): Book? = dbQuery {
@@ -102,5 +107,11 @@ class APIService {
             rate = row[BookTable.rate],
             pageNumber = row[BookTable.pageNumber],
             link = row[BookTable.link]
+        )
+
+    private fun toBookImage(row: ResultRow): BookImage =
+        BookImage(
+            id = row[BookTable.id],
+            photo = row[BookTable.photo]
         )
 }
