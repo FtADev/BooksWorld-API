@@ -33,9 +33,9 @@ class APIService {
             .singleOrNull()
     }
 
-    suspend fun getCategory(category: String): Book? = dbQuery {
+    suspend fun searchBook(name: String): Book? = dbQuery {
         BookTable.select {
-            (BookTable.category eq category)
+            (BookTable.name like "%${name}")
         }.mapNotNull { toBook(it) }
             .singleOrNull()
     }

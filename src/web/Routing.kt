@@ -19,8 +19,8 @@ fun Route.widget(apiService: APIService) {
             if (widget == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(widget)
         }
-        post("/{category}") {
-            val widget = apiService.getCategory(call.parameters["category"]!!)
+        post("/search/{name}") {
+            val widget = apiService.searchBook(call.parameters["name"]!!)
             if (widget == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(widget)
         }
