@@ -11,8 +11,8 @@ fun Route.widget(apiService: APIService) {
         get("/") {
             call.respond(apiService.getAllBooks())
         }
-        get("/image") {
-            call.respond(apiService.getAllImage())
+        get("/image/{limit}/{offset}") {
+            call.respond(apiService.getAllImage(call.parameters["limit"]?.toInt()!!, call.parameters["offset"]?.toInt()!!))
         }
         get("/{id}") {
             val widget = apiService.getWidget(call.parameters["id"]?.toInt()!!)

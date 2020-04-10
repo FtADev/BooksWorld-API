@@ -22,8 +22,8 @@ class APIService {
         BookTable.selectAll().map { toBook(it) }
     }
 
-    suspend fun getAllImage(): List<BookImage> = dbQuery {
-        BookTable.selectAll().map { toBookImage(it) }
+    suspend fun getAllImage(limit: Int, offset: Int): List<BookImage> = dbQuery {
+        BookTable.selectAll().limit(limit, offset = offset).map { toBookImage(it) }
     }
 
     suspend fun getWidget(id: Int): Book? = dbQuery {
