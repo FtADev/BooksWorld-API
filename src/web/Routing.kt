@@ -21,8 +21,7 @@ fun Route.widget(apiService: APIService) {
         }
         get("/search/{name}") {
             val widget = apiService.searchBook(call.parameters["name"]!!)
-            if (widget == null) call.respond(HttpStatusCode.NotFound)
-            else call.respond(widget)
+            call.respond(widget)
         }
     }
 }
