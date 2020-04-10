@@ -39,23 +39,23 @@ class APIService {
         }.map { toBook(it) }
     }
 
-    suspend fun updateWidget(Book: Book): Book? {
-        val id = Book.id
+    suspend fun updateWidget(book: Book): Book? {
+        val id = book.id
         return if (id == null) {
-            addBook(Book)
+            addBook(book)
         } else {
             dbQuery {
                 BookTable.update({ BookTable.id eq id }) {
-                    it[name] = Book.name
-                    it[author] = Book.author
-                    it[translator] = Book.translator!!
-                    it[publisher] = Book.publisher!!
-                    it[category] = Book.category!!
-                    it[photo] = Book.photo
-                    it[descr] = Book.descr
-                    it[rate] = Book.rate
-                    it[pageNumber] = Book.pageNumber!!
-                    it[link] = Book.link!!
+                    it[name] = book.name
+                    it[author] = book.author
+                    it[translator] = book.translator!!
+                    it[publisher] = book.publisher!!
+                    it[category] = book.category!!
+                    it[photo] = book.photo
+                    it[descr] = book.descr
+                    it[rate] = book.rate
+                    it[pageNumber] = book.pageNumber!!
+                    it[link] = book.link!!
                 }
             }
             getWidget(id).also {
@@ -64,20 +64,20 @@ class APIService {
         }
     }
 
-    suspend fun addBook(Book: Book): Book {
+    suspend fun addBook(book: Book): Book {
         var key = 0
         dbQuery {
             key = (BookTable.insert {
-                it[name] = Book.name
-                it[author] = Book.author
-                it[translator] = Book.translator!!
-                it[publisher] = Book.publisher!!
-                it[category] = Book.category!!
-                it[photo] = Book.photo
-                it[descr] = Book.descr
-                it[rate] = Book.rate
-                it[pageNumber] = Book.pageNumber!!
-                it[link] = Book.link!!
+                it[name] = book.name
+                it[author] = book.author
+                it[translator] = book.translator!!
+                it[publisher] = book.publisher!!
+                it[category] = book.category!!
+                it[photo] = book.photo
+                it[descr] = book.descr
+                it[rate] = book.rate
+                it[pageNumber] = book.pageNumber!!
+                it[link] = book.link!!
             } get BookTable.id)
         }
         return getWidget(key)!!.also {
