@@ -8,18 +8,18 @@ import io.ktor.routing.*
 
 fun Route.widget(apiService: APIService) {
     route("/book") {
-        get("/{limit}/{offset}") {
+        get("/all/{limit}/{offset}") {
             call.respond(apiService.getAllBooks(call.parameters["limit"]?.toInt()!!, call.parameters["offset"]?.toInt()!!))
         }
         get("/image/{limit}/{offset}") {
             call.respond(apiService.getAllImage(call.parameters["limit"]?.toInt()!!, call.parameters["offset"]?.toInt()!!))
         }
-        get("/{id}") {
+        get("/info/{id}") {
             val widget = apiService.getWidget(call.parameters["id"]?.toInt()!!)
             if (widget == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(widget)
         }
-        post("/search/{name}") {
+        get("/search/{name}") {
             val widget = apiService.searchBook(call.parameters["name"]!!)
             if (widget == null) call.respond(HttpStatusCode.NotFound)
             else call.respond(widget)
