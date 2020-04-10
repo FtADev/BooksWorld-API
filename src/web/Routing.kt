@@ -8,8 +8,8 @@ import io.ktor.routing.*
 
 fun Route.widget(apiService: APIService) {
     route("/book") {
-        get("/") {
-            call.respond(apiService.getAllBooks())
+        get("/{limit}/{offset}") {
+            call.respond(apiService.getAllBooks(call.parameters["limit"]?.toInt()!!, call.parameters["offset"]?.toInt()!!))
         }
         get("/image/{limit}/{offset}") {
             call.respond(apiService.getAllImage(call.parameters["limit"]?.toInt()!!, call.parameters["offset"]?.toInt()!!))

@@ -18,8 +18,8 @@ class APIService {
         }
     }
 
-    suspend fun getAllBooks(): List<Book> = dbQuery {
-        BookTable.selectAll().map { toBook(it) }
+    suspend fun getAllBooks(limit: Int, offset: Int): List<Book> = dbQuery {
+        BookTable.selectAll().limit(limit, offset = offset).map { toBook(it) }
     }
 
     suspend fun getAllImage(limit: Int, offset: Int): List<BookImage> = dbQuery {
