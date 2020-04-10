@@ -33,11 +33,10 @@ class APIService {
             .singleOrNull()
     }
 
-    suspend fun searchBook(name: String): Book? = dbQuery {
+    suspend fun searchBook(name: String): List<Book> = dbQuery {
         BookTable.select {
-            (BookTable.name like "%${name}")
-        }.mapNotNull { toBook(it) }
-            .singleOrNull()
+            (BookTable.name like "%${name}%")
+        }.map { toBook(it) }
     }
 
     suspend fun updateWidget(Book: Book): Book? {
