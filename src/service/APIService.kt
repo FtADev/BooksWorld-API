@@ -85,13 +85,11 @@ class APIService {
         }
     }
 
-    suspend fun deleteBook(id: Int): Boolean {
-        return dbQuery {
+    suspend fun deleteBook(id: Int): Boolean = dbQuery {
             BookTable.deleteWhere { BookTable.id eq id } > 0
         }.also {
             if (it) onChange(ChangeType.DELETE, id)
         }
-    }
 
     private fun toBook(row: ResultRow): Book =
         Book(
