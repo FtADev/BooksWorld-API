@@ -2,6 +2,12 @@ buildscript {
     ext.kotlin_version = '1.3.71'
     ext.ktor_version = '1.3.2'
     ext.exposed_version = '0.14.1'
+    ext.mysql_connector_version = '5.1.46'
+    ext.hikaricp_version = '3.3.1'
+    ext.assertj_core_version = '3.11.1'
+    ext.rest_assured_version = '3.3.0'
+    ext.junit_jupiter_api_version = '5.4.0'
+    ext.junit_jupiter_engine_version = '5.4.0'
 
     repositories {
         jcenter()
@@ -50,12 +56,12 @@ dependencies {
     compile "io.ktor:ktor-websockets:$ktor_version"
 
     compile "org.jetbrains.exposed:exposed:$exposed_version"
-    compile 'com.zaxxer:HikariCP:3.3.1'
-    compile "mysql:mysql-connector-java:5.1.46"
+    compile "com.zaxxer:HikariCP:$hikaricp_version"
+    compile "mysql:mysql-connector-java:$mysql_connector_version"
 
     compile "ch.qos.logback:logback-classic:$logback_version"
-    testCompile "org.assertj:assertj-core:3.11.1"
-    testCompile "io.rest-assured:rest-assured:3.3.0"
-    testCompile "org.junit.jupiter:junit-jupiter-api:5.4.0"
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.0'
+    testCompile "org.assertj:assertj-core:$assertj_core_version"
+    testCompile "io.rest-assured:rest-assured:$rest_assured_version"
+    testCompile "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_api_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_engine_version"
 }
